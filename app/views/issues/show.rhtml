@@ -71,6 +71,13 @@
 <p><strong><%=l(:label_subtask_plural)%></strong></p>
 <%= render_descendants_tree(@issue) unless @issue.leaf? %>
 </div>
+
+<% if User.current.allowed_to?(:manage_subtasks, @project) && "#{@issue.tracker}" != "Vote" %>
+<%= link_to_if_authorized 'Create Voting Issue', {:controller => 'issues', :action => 'new', :project_id => 'voting', :copy_from => @issue, 
+                :issue => {:parent_issue_id => @issue, :subject => "#{@issue.tracker} ##{@issue.id} #{@issue.subject}", :description => nil, :assigned_to_id => nil}
+        }, :class => 'icon icon-duplicate' %>
+<% end %>
+
 <% end %>
 
 <% if @relations.present? || User.current.allowed_to?(:manage_issue_relations, @project) %>

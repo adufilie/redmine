@@ -184,6 +184,11 @@ module Redmine
           return render_menu_node_with_children(node, project)
         else
           caption, url, selected = extract_node_details(node, project)
+
+          if "#{project}" == "Voting" && ("#{caption}" == "New issue" || "#{caption}" == "Wiki")
+            return ""
+          end
+
           return content_tag('li',
                                render_single_menu_node(node, caption, url, selected))
         end
