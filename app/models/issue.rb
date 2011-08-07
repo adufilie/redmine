@@ -169,7 +169,7 @@ class Issue < ActiveRecord::Base
         issue.fixed_version = nil
       end
       issue.project = new_project
-      if issue.parent && issue.parent.project_id != issue.project_id
+      if issue.parent && issue.parent.project_id != issue.project_id && !Setting.cross_project_issue_relations?
         issue.parent_issue_id = nil
       end
     end
