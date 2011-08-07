@@ -36,6 +36,8 @@
 
 <%= render(:partial => "wiki/content", :locals => {:content => @content}) %>
 
+<div class="wiki"><h1></h1></div>
+
 <%= link_to_attachments @page %>
 
 <% if @editable && authorize_for('wiki', 'add_attachment') %>
