@@ -31,10 +31,11 @@
     <h3><%= link_to_project(news.project) + ': ' unless news.project == @project %>
     <%= link_to h(news.title), news_path(news) %>
     <%= "(#{l(:label_x_comments, :count => news.comments_count)})" if news.comments_count > 0 %></h3>
-    <p class="author"><%= authoring news.created_on, news.author %></p>
+    <p><% unless news.summary.blank? %><em><%=h news.summary %></em><br /><% end %></p>
     <div class="wiki">
     <%= textilizable(news.description) %>
     </div>
+    <p class="author"><%= authoring news.created_on, news.author %></p>&nbsp;
 <% end %>
 <% end %>
 <p class="pagination"><%= pagination_links_full @news_pages %></p>
