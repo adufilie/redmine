@@ -37,6 +37,8 @@
     <%= wikitoolbar_for 'notes' %>
     <%= call_hook(:view_issues_edit_notes_bottom, { :issue => @issue, :notes => @notes, :form => f }) %>
     
+    <p><i>Please note that comments written here do not constitute additional feature requests or bug reports.</i></p>
+    
     <p><%=l(:label_attachment_plural)%><br /><%= render :partial => 'attachments/form' %></p>
     </fieldset>
     </div>
